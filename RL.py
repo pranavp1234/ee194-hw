@@ -118,10 +118,10 @@ obs = env.reset()
 running_reward = 0
 while(True):
     env.render()
-    index_1 = round(obs[0]+2.4,2)
-    index_1 = int(round(index_1,0))
-    index_2 = (round(obs[2]+0.42,3)/0.1)
-    index_2 = int(round(index_2,0))
+    index_1 = round(obs[0]+2.4, 2)
+    index_1 = int(round(index_1, 0))
+    index_2 = (round(obs[2]+0.42, 3) / 0.1)
+    index_2 = int(round(index_2, 0))
     if obs[3] <= -np.radians(16.67):
         # index_1 = (round(obs[0]+2.4,2)/0.01)-1
         index_3 = 0

@@ -14,21 +14,19 @@ Q = np.zeros((2,6,9,3,4))
 
 c = 10
 
-import pdb; pdb.set_trace()
-
 actions = [0,1]
 
-epsilon=0.01
+epsilon=1.0
 
-alpha=0.1
+alpha=0.5
 
-discount = 0.9
+discount = 0.99
 
 i=0
 
 obs = env.reset()
 running_reward = 0
-for _ in range(300000):
+for _ in range(30000):
     env.render()
     if round(obs[0],2) <= obs[0]:
         index_1 = round(obs[0]+2.4,2)
@@ -101,9 +99,10 @@ for _ in range(300000):
     # import pdb; pdb.set_trace()
     if done == True:
         # epsilon *= 0.99
-        epsilon = max(epsilon, min(1, 1.0 - np.log10((i + 1) / 25)))
-        discount = max(discount, min(0.5, 1.0 - np.log10((i + 1) / 25)))
-        Q[actionerino,index_1,index_2,index_3] = -100
+        epsilon = max(0.01, min(epsilon, 1.0 - np.log10((i + 1) / 25)))
+        discount = max(0.5, min(discount, 1.0 - np.log10((i + 1) / 25)))
+        alpha = max(0.1, min(alpha, 1.0 - np.log10((i + 1) / 25)))
+        Q[actionerino,index_1,index_2,index_3,index_4] = -1000000000
         print(running_reward)
         running_reward = 0
         print("reset " + str(i))
